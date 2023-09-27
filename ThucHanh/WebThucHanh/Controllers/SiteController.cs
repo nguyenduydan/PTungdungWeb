@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyClass.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,9 @@ namespace WebThucHanh.Controllers
         // GET: Site
         public ActionResult Index()
         {
+            MyDBContext db = new MyDBContext();//tao moi db
+            int sodong = db.Orders.Count();
+            ViewBag.sodong =sodong;
             return View();
         }
     }
