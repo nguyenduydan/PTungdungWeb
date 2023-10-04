@@ -1,0 +1,6 @@
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\bin\Debug\Web_admin.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\bin\Debug\Web_admin.pdb
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\obj\Debug\Web_admin.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\obj\Debug\Web_admin.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\obj\Debug\Web_admin.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\Web_admin\obj\Debug\Web_admin.pdb
