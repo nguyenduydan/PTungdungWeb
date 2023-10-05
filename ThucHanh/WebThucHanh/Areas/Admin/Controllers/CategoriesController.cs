@@ -20,24 +20,26 @@ namespace WebThucHanh.Areas.Admin.Controllers
         {
             return View(categoriesDAO.getList("Index"));
         }
-            public ActionResult Details(int? id)
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Categories categories = categoriesDAO.getRow(id);
-                if (categories == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(categories);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Categories categories = categoriesDAO.getRow(id);
+            if (categories == null)
+            {
+                return HttpNotFound();
+            }
+            return View(categories);
         }
 
         //------------------------------------------------------------------------------------------
         // GET: Admin/Categories/Create
-            public ActionResult Create()
+        public ActionResult Create()
         {
+            ViewBag.ListCat = new SelectList(categoriesDAO.getList("Index"), "ID", "Name");
+            ViewBag.OrderList = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");
             return View();
         }
 
@@ -50,6 +52,15 @@ namespace WebThucHanh.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Xu ly cho muc CreateAt
+                categories.CreateAt = DateTime.Now;
+                //Xu ly cho muc UpdateAt
+                categories.UpdateAt = DateTime.Now;
+                //Xu ly cho muc CreateBy
+                categories.CreateBy = Convert.ToInt32(Session["UserId"]);
+                //Xu ly cho muc UpdateBy
+                categories.UpdateBy = Convert.ToInt32(Session["UserId"]);
+
                 categoriesDAO.Insert(categories);
                 return RedirectToAction("Index");
             }

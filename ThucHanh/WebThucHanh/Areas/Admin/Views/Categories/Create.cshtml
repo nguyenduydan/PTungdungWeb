@@ -61,31 +61,33 @@
                         </div>
 
                         @* Phần lựa chọn *@
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Cấp cha <span class="text-danger"></span></label>
-                            <div class="col-md-10">
-                                
-                                @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        <div class="col-md-3">
 
-                        <div class="form-group">
-                            <label>Sắp xếp <span class="text-danger"></span></label>
-                            <div class="col-md-10">
-                                
-                                @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label>Cấp cha <span class="text-danger"></span></label>
+                                <div class="col-md-10">
+                                    @*@Html.DropDownListFor(model => model.ParentID, (SelectList)@ViewBag.ListCat, "Cấp 0", new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label>Trạng thái <span class="text-danger"> (*)</span></label>
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Không xuất bản", Value = "2" }, new SelectListItem { Text = "Xuất bản", Value = "1" } }, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label>Sắp xếp <span class="text-danger"></span></label>
+                                <div class="col-md-10">
+                                    @*@Html.DropDownListFor(model => model.Order, (SelectList)@ViewBag.OrderList, "Sắp xếp", new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+                                </div>
                             </div>
+
+                            <div class="form-group">
+                                <label>Trạng thái <span class="text-danger"> (*)</span></label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "Không xuất bản", Value = "2" }, new SelectListItem { Text = "Xuất bản", Value = "1" } }, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">

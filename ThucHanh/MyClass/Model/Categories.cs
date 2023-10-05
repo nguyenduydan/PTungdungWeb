@@ -21,10 +21,8 @@ namespace MyClass.Model
         [Required(ErrorMessage = "Tên rút gọn không được để trống")]
         public string Slug { get; set;}
         [Display(Name = "Cấp cha")]
-        [Required(ErrorMessage = "Cấp cha không được để trống")]
         public int? ParentID{ get; set;}
         [Display(Name = "Sắp xếp")]
-        [Required(ErrorMessage = "Sắp xếp không được để trống")]
         public int? Order{ get; set;}
         [Required(ErrorMessage = "Mô tả không được để trống")]
         [Display(Name = "Mô tả")]
@@ -44,7 +42,8 @@ namespace MyClass.Model
         [Required(ErrorMessage = "Người tạo không được để trống")]
         [Display(Name = "Người tạo")]
         public DateTime UpdateAt { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Trạng thái không được để trống")]
+        [Display(Name = "Trạng thái")]
         public int Status { get; set;}
 
     }
