@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebThucHanh;
 
 namespace WebThucHanh
 {
@@ -18,9 +19,11 @@ namespace WebThucHanh
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        //Tao moi Session
         protected void Session_Start()
         {
-            Session["UserID"] = "1";
+            Session["UserId"] = "1";
         }
+
     }
 }

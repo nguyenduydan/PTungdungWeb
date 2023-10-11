@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MyClass.Model;
@@ -13,31 +14,29 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
-        //INDEX
         public List<Categories> getList()
         {
             return db.Categories.ToList();
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        //Hien thi danh sach theo trang thai
+        //INDEX dựa vào Status =1,2 còn Status= 0 == thùng rác
         public List<Categories> getList(string status = "All")
         {
             List<Categories> list = null;
-            switch (status)
+            switch(status)
             {
-                case "Index"://status == 1,2
+                case "Index":
                     {
                         list = db.Categories
-                        .Where(m => m.Status != 0)
-                        .ToList();
+                            .Where(m => m.Status != 0)
+                            .ToList();
                         break;
                     }
-                case "Trash"://status == 0
+                case "Trash":
                     {
                         list = db.Categories
-                        .Where(m => m.Status == 0)
-                        .ToList();
+                            .Where(m => m.Status == 0)
+                            .ToList();
                         break;
                     }
                 default:
@@ -46,12 +45,12 @@ namespace MyClass.DAO
                         break;
                     }
             }
+            
             return list;
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        //Hien thi danh sach 1 mau tin (ban ghi)
-        public Categories getRow(int? id)
+        //DETAILS
+        public Categories getRow(int? id) //có ? hay không dựa vào details trong controller
         {
             if (id == null)
             {
@@ -63,21 +62,25 @@ namespace MyClass.DAO
             }
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        ///Them moi mot mau tin
+        //CREATE
         public int Insert(Categories row)
         {
             db.Categories.Add(row);
             return db.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        ///Cap nhat mot mau tin
+        //UPDATE
         public int Update(Categories row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
 
+        //DELETE
+        public int Delete(Categories row)
+        {
+            db.Categories.Remove(row);
+            return db.SaveChanges();
+        }
     }
 }

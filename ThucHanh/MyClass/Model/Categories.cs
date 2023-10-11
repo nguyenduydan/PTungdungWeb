@@ -18,7 +18,6 @@ namespace MyClass.Model
         [Display (Name= "Tên Loại Hàng")]
         public string Name { get; set;}
         [Display(Name = "Tên Rút Gọn")]
-        [Required(ErrorMessage = "Tên rút gọn không được để trống")]
         public string Slug { get; set;}
         [Display(Name = "Cấp cha")]
         public int? ParentID{ get; set;}
@@ -36,13 +35,10 @@ namespace MyClass.Model
         [Display(Name = "Ngày tạo")]
         [Required(ErrorMessage = "Ngày tạo không được để trống")]
         public DateTime CreateAt { get; set;}
-        [Required(ErrorMessage = "Người cập nhật không được để trống")]
         [Display(Name = "Người cập nhật")]
-        public int UpdateBy { get; set;}
-        [Required(ErrorMessage = "Người tạo không được để trống")]
+        public int? UpdateBy { get; set;}
         [Display(Name = "Người tạo")]
-        public DateTime UpdateAt { get; set; }
-        [Required(ErrorMessage = "Trạng thái không được để trống")]
+        public DateTime? UpdateAt { get; set; }
         [Display(Name = "Trạng thái")]
         public int Status { get; set;}
 
