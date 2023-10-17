@@ -61,7 +61,8 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 categoriesDAO.Insert(categories);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Catlist = new SelectList(categoriesDAO.getList("Index"), "ID", "Name");
+            ViewBag.Orderlist = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");
             return View(categories);
         }
 
