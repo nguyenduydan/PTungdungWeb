@@ -51,7 +51,9 @@
                                 <td> @Html.DisplayFor(model=> model.FullName)</td>
                                 <td> @Html.DisplayFor(model=> model.Phone)</td>
                                 <td> @Html.DisplayFor(model=> model.Email)</td>
-                                <td> @Html.DisplayFor(model=> model.Image)</td>
+                                <td>
+                                    <img src="~/Public/img/supplier/@Model.Image" alt="IMG" class="img-fluid" />
+                                </td>
                                 <td> @Html.DisplayFor(model => model.CreateAt)</td>
                                 <td> @Html.DisplayFor(model => model.UpdateAt)</td>
                             </tr>
