@@ -163,3 +163,10 @@ E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHan
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.dll
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.pdb
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.dll.config
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.SqlServer.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.pdb
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.dll.config
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.xml
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.SqlServer.xml

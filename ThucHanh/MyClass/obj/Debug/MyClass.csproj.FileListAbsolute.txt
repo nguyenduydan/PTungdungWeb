@@ -10,3 +10,15 @@ E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHan
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.csproj.CopyComplete
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.dll
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.pdb
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\MyClass.dll.config
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\MyClass.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\MyClass.pdb
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\EntityFramework.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\EntityFramework.SqlServer.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\EntityFramework.xml
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\bin\Debug\EntityFramework.SqlServer.xml
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.csproj.CopyComplete
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\MyClass\obj\Debug\MyClass.pdb
