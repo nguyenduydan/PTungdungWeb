@@ -5,9 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Supplier", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID);
+    @Html.HiddenFor(model => model.CreateAt);
+    @Html.HiddenFor(model => model.CreateBy);
     <div class="wrapper">
         <!-- Main Sidebar Container -->
         <!-- Content Wrapper. Contains page content -->

@@ -4,7 +4,8 @@
     ViewBag.Title = "Xác nhận xóa mẫu tin";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@using (Html.BeginForm("Create", "Supplier", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="wrapper">
@@ -52,16 +53,14 @@
                                     <td> @Html.DisplayFor(model => model.FullName)</td>
                                     <td> @Html.DisplayFor(model => model.Phone)</td>
                                     <td> @Html.DisplayFor(model => model.Email)</td>
-                                    <td>
-                                        <img src="~/Public/img/supplier/@Model.Image" alt="IMG" class="img-fluid" />
-                                    </td>
+                                    <td> @Html.DisplayFor(model => model.Image)</td>
                                     <td> @Html.DisplayFor(model => model.CreateAt)</td>
                                     <td> @Html.DisplayFor(model => model.UpdateAt)</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="form-actions no-color mt-3">
-                            <button class="btn-sm btn-danger" type="submit" name="save">Xóa <i class="fa fa-trash"></i></button>
+                            <button class="btn-sm btn-danger" type="submit" name="Delete">Xóa [Delete] <i class="fa fa-trash"></i></button>
                         </div>
                     </div> <!-- /.card-footer-->
                 </div><!-- /.card -->

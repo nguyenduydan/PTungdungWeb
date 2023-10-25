@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
@@ -92,7 +93,7 @@ namespace WebThucHanh.Areas.Admin
                         //upload hinh
                         string PathDir = "~/Public/img/supplier/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
-                        img.SaveAs(PathFile);
+                        img.SaveAs(PathFile);   
                     }
                 }//ket thuc phan upload hinh anh
                 //Thêm mới vào database
@@ -105,67 +106,99 @@ namespace WebThucHanh.Areas.Admin
             return View(suppliers);
         }
 
-        // GET: Admin/Supplier/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.OrderList = new SelectList(supplierDAO.getList("Index"), "ID", "Name");
+            ViewBag.OrderList = new SelectList(supplierDAO.getList("Index"), "Order", "Name");
             if (id == null)
             {
                 //hiện thị thông báo
                 TempData["message"] = new Xmessage("danger", "Không tìm thấy nhà cung cấp!");
                 return RedirectToAction("Index");
             }
-            Suppliers suppliers =supplierDAO.getRow(id);
+            Suppliers suppliers = supplierDAO.getRow(id);
             if (suppliers == null)
             {
                 //hiện thị thông báo
                 TempData["message"] = new Xmessage("danger", "Không tìm thấy nhà cung cấp!");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); ;
             }
             return View(suppliers);
         }
 
-
+        // POST: Admin/Supplier/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Suppliers suppliers)
         {
             if (ModelState.IsValid)
             {
-                //Xử lý tự động 1 số trường
-                //Xử lý tự động cho các trường sau:
-                //Slug
+                //Xu ly cho muc Slug
                 suppliers.Slug = Xstring.Str_Slug(suppliers.Name);
-                //Order
+                //chuyen doi dua vao truong Name de loai bo dau, khoang cach = dau -
+
+                //Xu ly cho muc Order
                 if (suppliers.Order == null)
                 {
                     suppliers.Order = 1;
                 }
                 else
                 {
-                    suppliers.Order += 1;
+                    suppliers.Order = suppliers.Order + 1;
                 }
-                //Update at
+
+                //xu ly cho phan upload hình ảnh
+                var img = Request.Files["img"];//lay thong tin file
+                if (img.ContentLength != 0)
+                {
+                    string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
+                    //kiem tra tap tin co hay khong
+                    if (FileExtentions.Contains(img.FileName.Substring(img.FileName.LastIndexOf("."))))//lay phan mo rong cua tap tin
+                    {
+                        string slug = suppliers.Slug;
+                        //ten file = Slug + phan mo rong cua tap tin
+                        string imgName = slug + img.FileName.Substring(img.FileName.LastIndexOf("."));
+                        suppliers.Image = imgName;
+                        //upload hinh
+                        string PathDir = "~/Public/img/supplier/";
+                        string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+
+                        //cap nhat thi phai xoa file cu
+                        //Xoa file
+                        if (suppliers.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
+
+                        img.SaveAs(PathFile);
+                    }
+                }//ket thuc phan upload hinh anh
+
+                //Xu ly cho muc UpdateAt
                 suppliers.UpdateAt = DateTime.Now;
-                //Update by
+
+                //Xu ly cho muc UpdateBy
                 suppliers.UpdateBy = Convert.ToInt32(Session["UserId"]);
+
                 supplierDAO.Update(suppliers);
-                //hiển thị thông báo thành công
-                TempData["message"] = new Xmessage("success", "Cập nhật thông tin thành công!");
-                return RedirectToAction("Index"); ;
+
+                //Thong bao thanh cong
+                TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
+                return RedirectToAction("Index");
             }
-            ViewBag.OrderList = new SelectList(supplierDAO.getList("Index"), "ID", "Name");
             return View(suppliers);
         }
 
+
         // GET: Admin/Supplier/Delete/5
+        //Xóa hoàn toàn
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 //hiện thị thông báo
                 TempData["message"] = new Xmessage("danger", "Xóa mẫu tin thất bại!");
-                return RedirectToAction("Index");
+                return RedirectToAction("Trash");
             }
             Suppliers suppliers = supplierDAO.getRow(id);
             if (suppliers == null)
@@ -183,7 +216,19 @@ namespace WebThucHanh.Areas.Admin
         public ActionResult DeleteConfirmed(int id)
         {
             Suppliers suppliers = supplierDAO.getRow(id);
-            supplierDAO.Delete(suppliers);
+            if (supplierDAO.Delete(suppliers) == 1)
+            {
+                //duong dan den anh can xoa
+                string PathDir = "~/Public/img/supplier/";
+                //cap nhat thi phai xoa file cu
+                if (suppliers.Image != null)
+                {
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);
+                    System.IO.File.Delete(DelPath);
+                }
+            }
+            //Thong bao thanh cong
+            TempData["message"] = new Xmessage("success", "Xóa danh mục thành công");
             return RedirectToAction("Trash");
         }
         public ActionResult Status(int? id)
@@ -215,6 +260,7 @@ namespace WebThucHanh.Areas.Admin
             return RedirectToAction("Index");
         }
 
+        //Xóa bỏ vào thùng rác
         public ActionResult DelTrash(int? id)
         {
             if (id == null)
