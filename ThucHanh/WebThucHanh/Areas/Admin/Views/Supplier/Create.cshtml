@@ -1,11 +1,11 @@
 ﻿@model MyClass.Model.Suppliers
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Tạo mới nhà cung cấp";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Supplier", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="wrapper">
@@ -47,27 +47,6 @@
                                         @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-12" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.MetaDesc, htmlAttributes: new { @class = "control-label col-md-12" })
                                     <div class="col-md-10">
@@ -84,10 +63,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Logo NCC <span class="text-danger"></span></label>
+                                    <div class="col-md-10">
+                                        <input type="file" name="img" class="form-control" alt="Hình ảnh" />
+                                    </div>
+                                </div>
+                            </div>
+                            @*lựa chọn*@
+                            <div class="col-md-3">
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-12" })
                                     <div class="col-md-10">
                                         @Html.DropDownListFor(model => model.Order, (SelectList)ViewBag.Orderlist, "Sắp xếp", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-12" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,15 +97,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            @*Phần lựa chọn dữ liệu*@
-                            <!--<div class="col-md-3">
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-
-                            </div>-->
-
                         </div>
                         <!--Sửa nút create-->
                         <button class="btn-sm btn-success" type="submit" name="create">[Lưu] Thêm <i class="fa fa-save"></i></button>
