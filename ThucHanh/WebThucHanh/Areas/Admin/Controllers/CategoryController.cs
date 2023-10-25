@@ -29,12 +29,16 @@ namespace WebThucHanh.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //hiện thị thông báo
+                TempData["message"] = new Xmessage("danger", "Không tìm thấy loại hàng!");
+                return RedirectToAction("Index");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
             {
-                return HttpNotFound();
+                //hiện thị thông báo
+                TempData["message"] = new Xmessage("danger", "KHông tìm thấy loại hàng!");
+                return RedirectToAction("Index");
             }
             return View(categories);
         }
