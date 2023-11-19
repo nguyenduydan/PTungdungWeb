@@ -15,7 +15,7 @@ namespace WebThucHanh.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         CategoriesDAO categoriesDAO = new CategoriesDAO();
-
+        LinksDAO linksDAO = new LinksDAO();
         //-----------------------------------------------------------------------------
         // GET: Admin/Category/Index
         public ActionResult Index()
@@ -97,8 +97,15 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 categories.UpdateAt = DateTime.Now;
                 //Update by
                 categories.UpdateBy = Convert.ToInt32(Session["UserId"]);
-
-                categoriesDAO.Insert(categories);
+                //xu ly cho muc Topics
+                if (categoriesDAO.Insert(categories) == 1)//khi them du lieu thanh cong
+                {
+                    Links links = new Links();
+                    links.Slug = categories.Slug;
+                    links.TableID = categories.ID;
+                    links.Type = "category";
+                    linksDAO.Insert(links);
+                }
                 //hiển thị thông báo thành công
                 TempData["message"] = new Xmessage ("success","Tạo mới loại sản phẩm thành công!");
                 return RedirectToAction("Index");
@@ -156,10 +163,17 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 categories.UpdateAt = DateTime.Now;
                 //Update by
                 categories.UpdateBy = Convert.ToInt32(Session["UserId"]);
-                //cập nhật db
-                categoriesDAO.Update(categories);
                 //hiển thị thông báo thành công
                 TempData["message"] = new Xmessage("success", "Cập nhật thông tin thành công!");
+                //cập nhật links
+                if (categoriesDAO.Update(categories) == 1)
+                {
+                    //Neu trung khop thong tin: Type = category va TableID = categories.ID
+                    Links links = linksDAO.getRow(categories.ID, "category");
+                    //cap nhat lai thong tin
+                    links.Slug = categories.Slug;
+                    linksDAO.Update(links);
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.Catlist = new SelectList(categoriesDAO.getList("Index"), "ID", "Name");
@@ -193,8 +207,14 @@ namespace WebThucHanh.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Categories categories = categoriesDAO.getRow(id);
-            //tìm thấy mẫu tin thì xóa
-            categoriesDAO.Delete(categories);
+            //Xóa links khi tìm thấy
+            if (categoriesDAO.Delete(categories) == 1)
+            {
+                //Neu trung khop thong tin: Type = category va TableID = categories.ID
+                Links links = linksDAO.getRow(categories.ID, "category");
+                //Xóa luôn cho Links
+                linksDAO.Delete(links);
+            }
             //hiện thị thông báo
             TempData["message"] = new Xmessage("success", "Xóa mẫu tin thành công!");
             return RedirectToAction("Trash");

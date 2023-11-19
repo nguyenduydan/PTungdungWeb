@@ -1,4 +1,5 @@
-﻿using MyClass.Model;
+﻿using MyClass.DAO;
+using MyClass.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,171 @@ namespace WebThucHanh.Controllers
 {
     public class SiteController : Controller
     {
+        LinksDAO linksDAO = new LinksDAO();
+        ProductDAO productDAO = new ProductDAO();
         // GET: Site
-        public ActionResult Index()
+        public ActionResult Index(string slug = null)
         {
-            MyDBContext db = new MyDBContext();//tao moi db
-            int sodong = db.Orders.Count();
-            ViewBag.sodong =sodong;
-            return View();
+            if (slug == null)
+            {
+                //chuyen ve trang chu
+                return this.Home();
+            }
+            else
+            {
+                //tim slug co trong bang link
+                Links links = linksDAO.getRow(slug);
+                //kiem tra slug co ton tai trong bang Links hay khong
+                if (links != null)
+                {
+                    //lay ra Type trong bang link
+                    string typelink = links.Type;
+                    switch (typelink)
+                    {
+                        case "category":
+                            {
+                                return this.ProductCategory(slug);
+                            }
+                        case "topic":
+                            {
+                                return this.PostTopic(slug);
+                            }
+                        case "page":
+                            {
+                                return this.PostPage(slug);
+                            }
+                        default:
+                            {
+                                return this.Error404(slug);
+                            }
+                    }
+                }
+                else
+                {
+                    //slug khong co trong bang Links
+                    //slug co trong bang product?
+                    //slug co trong bang Post voi PostType==post?
+                    ProductDAO productsDAO = new ProductDAO();
+                    PostsDAO postsDAO = new PostsDAO();
+
+                    //tim slug co trong bang Products
+                    Products products = productsDAO.getRow(slug);
+                    if (products != null)
+                    {
+                        return this.ProductDetail(products);
+                    }
+                    else
+                    {
+                        Posts posts = postsDAO.getRow(slug);
+                        if (posts != null)
+                        {
+                            return this.PostDetail(posts);
+                        }
+                        else
+                        {
+                            return this.Error404(slug);
+                        }
+                    }
+                }
+            }
         }
+        //Trang chu
+        public ActionResult Home()
+        {
+            CategoriesDAO categoriesDAO = new CategoriesDAO();
+            List<Categories> list = categoriesDAO.getListByPareantId(0);
+            return View("Home", list);
+
+        }
+        public ActionResult Product()
+        {
+            return View("Product");
+        }
+        //Site/Post
+        public ActionResult Post()
+        {
+            return View("Post");
+        }
+        //Site/ProductCategory
+        public ActionResult ProductCategory(string slug)
+        {
+            return View("ProductCategory");
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        //Site/PostTopic
+        public ActionResult PostTopic(string slug)
+        {
+            return View("PostTopic");
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        //Site/PostPage
+        public ActionResult PostPage(string slug)
+        {
+            return View("PostPage");
+        }
+       
+
+
+
+        /////////////////////////////////////////////////////////////////////////////
+        //Site/Error404
+        public ActionResult Error404(string slug)
+        {
+            return View("Error404");
+        }
+
+        //Site/Product
+     
+        //Products/Details
+        public ActionResult ProductDetail(Products product)
+        {
+            return View("ProductDetail");
+        }
+        
+        //Post/Details
+        public ActionResult PostDetail(Posts posts)
+        {
+            return View("PostDetail");
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
+        //HomeProduct
+        public ActionResult HomeProduct(int id)
+        {
+            CategoriesDAO categoriesDAO = new CategoriesDAO();
+            Categories categories = categoriesDAO.getRow(id);
+            ViewBag.Categories = categories;
+            //hien thi toan bo cac shan pham ung voi tung loai
+            //hien thi theo 3 cap: cha - con - con cua con
+            List<int> listcatid = new List<int>();
+            //cap 1
+            listcatid.Add(id);
+
+            //cap 2
+            List<Categories> listcategories2 = categoriesDAO.getListByPareantId(id);
+            if (listcategories2.Count() != 0)
+            {
+                foreach (var categories2 in listcategories2)
+                {
+                    listcatid.Add(categories2.ID);
+                    //cap 3
+                    List<Categories> listcategories3 = categoriesDAO.getListByPareantId(categories2.ID);
+                    if (listcategories3.Count() != 0)
+                    {
+                        foreach (var categories3 in listcategories3)
+                        {
+                            listcatid.Add(categories3.ID);
+                        }
+                    }
+                }
+            }
+            ProductDAO productsDAO = new ProductDAO();
+            List<ProductInfo> list = productsDAO.getListByCatId(listcatid, 10);
+            return View("HomeProduct", list);
+        }
+
+
     }
 }

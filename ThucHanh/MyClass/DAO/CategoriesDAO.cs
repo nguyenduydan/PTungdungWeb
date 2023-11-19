@@ -48,6 +48,13 @@ namespace MyClass.DAO
             
             return list;
         }
+        public List<Categories> getListByPareantId(int parentid = 0)
+        {
+            return db.Categories
+              .Where(m => m.ParentID == parentid && m.Status == 1)
+              .OrderBy(m => m.Order)
+              .ToList();
+        }
 
         //DETAILS
         public Categories getRow(int? id) //có ? hay không dựa vào details trong controller
