@@ -23,6 +23,8 @@ namespace WebThucHanh
         protected void Session_Start()
         {
             Session["UserId"] = "1";
+            Session["MyCart"] = "";//khoi tao gia tri = NULL
+            Session["UserCustomer"] = "";
         }
 
     }

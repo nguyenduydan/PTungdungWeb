@@ -27,7 +27,7 @@
             <div class="card-body">
                 @Html.Partial("Message")
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <table class="table table-bordered">
                             <tr>
                                 <th>@Html.DisplayNameFor(model => model.Id)</th>
@@ -35,6 +35,8 @@
                                 <th>@Html.DisplayNameFor(model => model.Link)</th>
                                 <th>@Html.DisplayNameFor(model => model.TypeMenu)</th>
                                 <th>@Html.DisplayNameFor(model => model.Order)</th>
+                                <th>@Html.DisplayNameFor(model => model.CreateBy)</th>
+                                <th>@Html.DisplayNameFor(model => model.CreateAt)</th>
                             </tr>
                             <tr>
                                 <td>@Html.DisplayFor(model => model.Id)</td>
@@ -42,8 +44,9 @@
                                 <td>@Html.DisplayFor(model => model.Link)</td>
                                 <td>@Html.DisplayFor(model => model.TypeMenu)</td>
                                 <td>@Html.DisplayFor(model => model.Order)</td>
+                                <td>@Html.DisplayFor(model => model.CreateBy)</td>
+                                <td>@Html.DisplayFor(model => model.CreateAt)</td>
                             </tr>
-
                         </table>
                     </div>
                 </div>

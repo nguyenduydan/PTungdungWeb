@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<MyClass.Model.Menus>
-
+@using WebThucHanh.Library
 <style>
-    ul{
-        font-weight:500;
+    ul {
+        font-weight: 500
     }
 </style>
 <body>
@@ -18,16 +18,30 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto  fw">
+                        <ul class="nav navbar-nav menu_nav ml-auto mr-auto fw">
                             @foreach (var item in Model)
                             {
                                 @Html.Action("MainMenuSub", "Module", new { @id = @item.Id });
                             }
                         </ul>
                         <ul class="nav-shop">
+                            @*neu gio hang khac null*@
+                            @{
+                                int soluong = 0;
+                                var cartSession = System.Web.HttpContext.Current.Session["MyCart"] as List<CartItem>;
+                                if (cartSession != null)
+                                {
+
+                                    soluong = cartSession.Count;
+                                }
+                            }
+
                             <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                            <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                            <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                            <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">@soluong</span></button> </li>
+                            <li class="nav-item"><a class="button button-header" href="~/gio-hang">Giỏ hàng</a></li>
+                        </ul>
+                        <ul>
+                            <li class="nav-item"><a href="~/dang-nhap" class="button button-header">Đăng nhập</a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,5 +49,4 @@
         </div>
     </header>
     <!--================ End Header Menu Area =================-->
-
 </body>

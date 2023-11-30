@@ -54,7 +54,7 @@ namespace MyClass.Model
 
         [Required(ErrorMessage = "Người tạo không được để trống")]
         [Display(Name = "Người tạo")]
-        public int CreateBy { get; set; }
+        public int CreateBy { get; set; }   
 
         [Required(ErrorMessage = "Ngày tạo không được để trống")]
         [Display(Name = "Ngày tạo")]

@@ -32,16 +32,16 @@
         @*================ Hero Carousel end =================*@
 
         @*================ trending product section start =================*@
-        @*@Html.Action("Product", "Site")*@
+        @Html.Action("Product", "Site")
         @*================ trending product section end =================*@
-        <section class="section-margin calc-60px">
+        @*<section class="section-margin calc-60px">
             <div class="container">
                 @foreach (var item in Model)
                 {
                     @Html.Action("HomeProduct", "Site", new { @id = item.ID })
                 }
             </div>
-        </section>
+        </section>*@
 
 
         @*================ offer section start =================*@
@@ -69,7 +69,6 @@
         <section class="blog">
             <div class="container">
                 <div class="section-intro pb-60px">
-                    <p>Popular Item in the market</p>
                     <h2>Latest <span class="section-intro__style">News</span></h2>
                 </div>
 

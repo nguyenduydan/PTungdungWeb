@@ -69,6 +69,15 @@ namespace MyClass.DAO
             }
         }
 
+        //Hien thi danh sach 1 mau tin (ban ghi) voi kieu string = slug
+        public Categories getRow(string slug)
+        {
+            return db.Categories
+              .Where(m => m.Slug == slug && m.Status == 1)
+              .FirstOrDefault();
+        }
+
+
         //CREATE
         public int Insert(Categories row)
         {

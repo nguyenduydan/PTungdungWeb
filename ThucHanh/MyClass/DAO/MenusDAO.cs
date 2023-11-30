@@ -50,6 +50,7 @@ namespace MyClass.DAO
                 .OrderBy(m => m.Order)
                 .ToList();
         }
+
         /////////////////////////////////////////////////////////////////////////////////////
         //Hien thi danh sach 1 mau tin (ban ghi)
         public Menus getRow(int? id)

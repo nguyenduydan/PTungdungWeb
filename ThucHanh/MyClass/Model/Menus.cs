@@ -50,6 +50,7 @@ namespace MyClass.Model
         [Display(Name = "Ngày cập nhật")]
         public DateTime? UpdateAt { get; set; }
 
+        [Required]
         [Display(Name = "Trạng thái")]
         public int Status { get; set; }
 
