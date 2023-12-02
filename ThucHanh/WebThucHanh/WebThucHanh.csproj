@@ -53,6 +53,12 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -127,6 +133,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SessionConfig.cs" />
+    <Compile Include="App_Start\UserRole.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -137,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\GiohangController.cs" />
     <Compile Include="Controllers\KhachhangController.cs" />
     <Compile Include="Controllers\LienheController.cs" />
@@ -174,6 +183,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -232,8 +242,10 @@
     <Content Include="Public\Aroma Shop-doc\syntax-highlighter\styles\shThemeMidnight.css" />
     <Content Include="Public\Aroma Shop-doc\syntax-highlighter\styles\shThemeRDark.css" />
     <Content Include="Public\css\jquery.dataTables.min.css" />
+    <Content Include="Public\css\login.css" />
     <Content Include="Public\css\main.css" />
     <Content Include="Public\css\style.css" />
+    <Content Include="Public\css\typing.css" />
     <Content Include="Public\dist\css\adminlte.css" />
     <Content Include="Public\dist\css\adminlte.min.css" />
     <Content Include="Public\dist\css\alt\adminlte.components.css" />
@@ -285,6 +297,7 @@
     <Content Include="Public\dist\js\pages\dashboard.js" />
     <Content Include="Public\dist\js\pages\dashboard2.js" />
     <Content Include="Public\dist\js\pages\dashboard3.js" />
+    <Content Include="Public\img\baby.jpg" />
     <Content Include="Public\img\blog\add.jpg" />
     <Content Include="Public\img\blog\author.png" />
     <Content Include="Public\img\blog\blog1.png" />
@@ -358,6 +371,9 @@
     <Content Include="Public\img\instagram\ins-6.jpg" />
     <Content Include="Public\img\login.jpg" />
     <Content Include="Public\img\logo.png" />
+    <Content Include="Public\img\loi-404-not-found-300x225.jpg" />
+    <Content Include="Public\img\pag15874585493488.jpg" />
+    <Content Include="Public\img\pngtree-404-page-fault-style-program-missing-png-image_6669503.jpg" />
     <Content Include="Public\img\product\card.jpg" />
     <Content Include="Public\img\product\product-sm-1.png" />
     <Content Include="Public\img\product\product-sm-2.png" />
@@ -2790,6 +2806,8 @@
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Trash.cshtml" />
+    <None Include="Properties\PublishProfiles\fogvn29-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\fogvn29-001-site1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2834,6 +2852,11 @@
     <Content Include="Views\Giohang\Index.cshtml" />
     <Content Include="Views\Giohang\ThanhToan.cshtml" />
     <Content Include="Views\Khachhang\DangNhap.cshtml" />
+    <Content Include="Views\Timkiem\Index.cshtml" />
+    <Content Include="Views\Site\PostTopic.cshtml" />
+    <Content Include="Views\Site\Error404.cshtml" />
+    <Content Include="Views\Khachhang\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\DangNhap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2844,7 +2867,6 @@
     <Folder Include="Public\img\slider\" />
     <Folder Include="Public\img\supplier\" />
     <Folder Include="Views\Lienhe\" />
-    <Folder Include="Views\Timkiem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

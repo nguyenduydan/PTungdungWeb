@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Khachhang", FormMethod.Post))
+{
+    <section class="login_box_area section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <div class="hover">
+                            <h4>Nếu bạn đã đăng ký?</h4>
+                            <p>Chào mừng bạn đã đến với shop của chúng tôi, nếu bạn là thành viên cũ thì xin mời bấm nút đăng nhập bên giới. Cảm ơn đã sử dụng shop của chúng tôi</p>
+                            <a class="button button-account" href="~/dang-nhap">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner register_form_inner">
+                        <h3>Tạo tài khoản mới</h3>
+                        <form class="row login_form" action="#/" id="register_form">
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Họ tên" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Họ tên'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tên đăng nhập'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số điện thoại'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mật khẩu'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" name="register" class="button button-login w-100">Đăng kí</button>
+                            </div>
+                        </form>
+                        <div>@Html.Raw(@ViewBag.Error)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

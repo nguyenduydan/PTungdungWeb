@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class MenuController : Controller
     {
         //Goi 4 lop DAO can thuc thi

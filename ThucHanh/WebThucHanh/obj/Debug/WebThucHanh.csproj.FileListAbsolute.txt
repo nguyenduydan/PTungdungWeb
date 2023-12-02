@@ -170,3 +170,7 @@ E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\MyClass.dll.config
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.xml
 E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\EntityFramework.SqlServer.xml
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\PagedList.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\PagedList.Mvc.dll
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\PagedList.xml
+E:\HK1_Nam3\PTUngDungWeb\ThucHanh\ThucHanh_Git\PTungdungWeb\ThucHanh\WebThucHanh\bin\PagedList.Mvc.xml

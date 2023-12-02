@@ -9,10 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class PostController : Controller
     {
         PostsDAO postsDAO = new PostsDAO();
@@ -21,6 +23,7 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
         /////////////////////////////////////////////////////////////////////////////////////
         // Admin/Post/Index: Tra ve danh sach cac mau tin
+        
         public ActionResult Index()
         {
             return View(postsDAO.getList("Index", "Post"));//hien thi toan bo danh sach loai SP

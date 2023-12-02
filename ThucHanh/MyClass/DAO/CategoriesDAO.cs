@@ -9,7 +9,6 @@ using MyClass.Model;
 
 namespace MyClass.DAO
 {
-
     public class CategoriesDAO
     {
         private MyDBContext db = new MyDBContext();

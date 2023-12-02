@@ -53,6 +53,13 @@ namespace MyClass.DAO
                 return db.Topics.Find(id);
             }
         }
+        //Hien thi danh sach 1 mau tin (ban ghi)
+        public Topics getRow(string slug)
+        {
+            return db.Topics
+                .Where(m => m.Slug == slug && m.Status == 1)
+                .FirstOrDefault();
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////
         ///Them moi mot mau tin

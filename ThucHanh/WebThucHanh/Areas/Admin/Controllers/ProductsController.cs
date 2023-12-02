@@ -9,10 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class ProductsController : Controller
     {
         ProductDAO productDAO = new ProductDAO();
@@ -20,6 +22,7 @@ namespace WebThucHanh.Areas.Admin.Controllers
         SupplierDAO supplierDAO = new SupplierDAO();
 
         // GET: Admin/Products
+       
         public ActionResult Index()
         {
             return View(productDAO.getList("Index"));

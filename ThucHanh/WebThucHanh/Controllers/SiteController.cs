@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System.Web.UI;
+using WebThucHanh.App_Start;
 
 namespace WebThucHanh.Controllers
 {
@@ -86,11 +89,17 @@ namespace WebThucHanh.Controllers
             return View("Home", list);
 
         }
-        public ActionResult Product()
+        public ActionResult Product(int? page)
         {
+            int pageSize = 8;
+            int pageNumber = page ?? 1;
+
             ProductDAO productsDAO = new ProductDAO();
-            List<ProductInfo> list = productsDAO.getListBylimit(10);
-            return View("Product", list);
+            List<ProductInfo> list = productsDAO.getList("All");
+
+            IPagedList<ProductInfo> pagedList = list.ToPagedList(pageNumber, pageSize);
+
+            return View("Product", pagedList);
         }
         /////////////////////////////////////////////////////////////////////////////
         //Product/Details
@@ -161,7 +170,9 @@ namespace WebThucHanh.Controllers
         //Site/PostTopic
         public ActionResult PostTopic(string slug)
         {
-            return View("PostTopic");
+            TopicsDAO topicsDAO = new TopicsDAO();
+            Topics topics = topicsDAO.getRow(slug);
+            return View("PostTopic", topics);
         }
 
         /////////////////////////////////////////////////////////////////////////////

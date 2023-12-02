@@ -54,6 +54,17 @@ namespace WebThucHanh
                url: "dang-nhap",
                defaults: new { controller = "Khachhang", action = "DangNhap", id = UrlParameter.Optional }
            );
+            routes.MapRoute(
+               name: "DangNhapAdmin",
+               url: "dang-nhap-admin",
+               defaults: new { controller = "Admin", action = "DangNhap", id = UrlParameter.Optional }
+           );
+            //Khai bao cho URL co dinh: dăng-nhap
+            routes.MapRoute(
+               name: "Dangky",
+               url: "dang-ky",
+               defaults: new { controller = "Khachhang", action = "Register", id = UrlParameter.Optional }
+           );
 
             //Khai bao cho URL co dinh: tim-kiem
             routes.MapRoute(
@@ -61,6 +72,7 @@ namespace WebThucHanh
                url: "tim-kiem",
                defaults: new { controller = "Timkiem", action = "Index", id = UrlParameter.Optional }
            );
+           
 
             //khai bao cho URL dong
             routes.MapRoute(

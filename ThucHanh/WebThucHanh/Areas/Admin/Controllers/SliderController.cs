@@ -9,15 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class SliderController : Controller
     {
         SlidersDAO slidersDAO = new SlidersDAO();
         /////////////////////////////////////////////////////////////////////////////////////
         // GET: Admin/Supplier = INDEX
+        
         public ActionResult Index()
         {
             return View(slidersDAO.getList("Index"));//hien thi toan bo danh sach Slider

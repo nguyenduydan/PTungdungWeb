@@ -1,0 +1,31 @@
+﻿
+
+.text {
+    color: rgb(0, 55, 255);
+    position: relative;
+    height: 50px;
+    font-weight: 600;
+    width: max-content
+}
+
+.text.sec-text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    height: 100%;
+    background-color: #f1f6f7;
+    border-left: 2px solid rgb(0, 55, 255);
+    animation: animate 4s steps(12) infinite;
+}
+
+@keyframes animate {
+    30%, 80% {
+        left: calc(100% + 5px);
+    }
+    100% {
+        left: 0%;
+    }
+}
+

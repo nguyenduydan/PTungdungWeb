@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class TopicController : Controller
     {
         TopicsDAO topicsDAO = new TopicsDAO();

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="~/Public/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Public/dist/css/adminlte.min.css" rel="stylesheet" />
+    <!-- Bootstrap tu dinh  nghia-->
+    <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
+    <link href="~/Public/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("Dangnhap", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex align-items-center justify-content-center h-100">
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+                        <img src="~/Public/img/login.jpg"
+                             class="img-fluid" alt="Phone image">
+                    </div>
+                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                        <div>
+                            <h1 class="text-center mb-5 text-primary" style="font-weight:800 !important; text-transform:uppercase">Đăng nhập</h1>
+                        </div>
+                        <form>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" id="form1Example13" name="username" class="form-control form-control-lg" placeholder="Tên đăng nhập" />
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="form1Example23" name="password" class="form-control form-control-lg" placeholder="Mật khẩu" />
+                            </div>
+
+                            <div class="d-flex justify-content-around align-items-center mb-4">
+                                <!-- Checkbox -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                                    <label class="form-check-label" for="form1Example3"> Nhớ mật khẩu </label>
+                                </div>
+                                <a href="#!">Quên mật khẩu?</a>
+                            </div>
+                            <!-- Submit button -->
+                            <button type="submit" value="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+                            <span class="text-center text-danger my-5">@ViewBag.Error</span>
+                        </form>
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-primary " style="font-size:1.5rem;border-radius:10rem" href="http://fogvn29-001-site1.ctempurl.com/">Trở về trang người dùng</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <script type="text/javascript" language="javascript">
+        //Check if the top location is same as the current location
+        if (top.location.hostname != self.location.hostname) {
+            //If not then set the top to you current
+            top.location.href = self.location.href;
+        }
+    </script>
+</body>
+
+</html>

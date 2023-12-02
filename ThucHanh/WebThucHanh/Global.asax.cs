@@ -26,6 +26,5 @@ namespace WebThucHanh
             Session["MyCart"] = "";//khoi tao gia tri = NULL
             Session["UserCustomer"] = "";
         }
-
     }
 }

@@ -8,16 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin.Controllers
 {
+    [UserRole]
     public class CategoryController : Controller
     {
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         LinksDAO linksDAO = new LinksDAO();
         //-----------------------------------------------------------------------------
         // GET: Admin/Category/Index
+       
         public ActionResult Index()
         {
             return View(categoriesDAO.getList("Index"));

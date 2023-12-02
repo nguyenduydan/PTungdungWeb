@@ -10,10 +10,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using WebThucHanh.App_Start;
 using WebThucHanh.Library;
 
 namespace WebThucHanh.Areas.Admin
 {
+    [UserRole]
     public class SupplierController : Controller
     {
         SupplierDAO supplierDAO = new SupplierDAO();
