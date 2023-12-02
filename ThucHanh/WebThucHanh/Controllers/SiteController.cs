@@ -160,7 +160,6 @@ namespace WebThucHanh.Controllers
                     }
                 }
             }
-
             ProductDAO productsDAO = new ProductDAO();
             List<ProductInfo> list = productsDAO.getListByListCatId(listcatid, 10);
             return View("ProductCategory", list);

@@ -88,6 +88,7 @@ namespace WebThucHanh.Controllers
                     users.Gender = "1";
                     users.UserName = username;
                     users.Password = password;
+                    users.CreateAt = DateTime.Now;
                     usersDAO.Insert(users);
                     mess = "Tạo tài khoản thành công";
                     ViewBag.Error = "<span class='text-success'>" + mess + "</span>";

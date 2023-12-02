@@ -146,6 +146,7 @@
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\GiohangController.cs" />
     <Compile Include="Controllers\KhachhangController.cs" />
     <Compile Include="Controllers\LienheController.cs" />
@@ -2806,6 +2807,9 @@
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Trash.cshtml" />
     <None Include="Properties\PublishProfiles\fogvn29-001-site1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\fogvn29-001-site1 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
