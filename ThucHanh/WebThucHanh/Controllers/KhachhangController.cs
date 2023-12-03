@@ -48,6 +48,7 @@ namespace WebThucHanh.Controllers
         public ActionResult Dangxuat()
         {
             Session["UserName"] = null;
+            SessionConfig.SetUser(null);
             return RedirectToAction("Index", "Site");
         }
 

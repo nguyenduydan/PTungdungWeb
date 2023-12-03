@@ -70,13 +70,13 @@ namespace WebThucHanh.Controllers
         public ActionResult ThanhToan()
         {
             //Kiem tra thong tin dang nhap trang nguoi dung = Khach hang
-            var user = Session["UserID"];
+            var user = Session["Username"];
             if (user == null)
             {
                 return Redirect("~/dang-nhap");//chuyen huong den URL
             }
             xcart.DelCart();
-            return View("ThanhToan");
+            return View();
         }
 
 

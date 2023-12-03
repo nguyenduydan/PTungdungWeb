@@ -47,5 +47,12 @@ namespace WebThucHanh.Areas.Admin.Controllers
             SessionConfig.SetUser(null);
             return RedirectToAction("Dangnhap", "Admin");
         }
+        public ActionResult ReturnHome()
+        {
+            SessionConfig.SetUser(null);
+            Session["UserId"] = null;
+            Session["Username"] =null;
+            return Redirect("http://fogvn29-001-site1.ctempurl.com/"); 
+        }
     }
 }

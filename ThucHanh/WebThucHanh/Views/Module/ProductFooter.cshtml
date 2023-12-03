@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MyClass.Model.ProductInfo>
+<div class="single-footer-widget instafeed">
+    <h4 class="footer_title">Sản phẩm</h4>
+    <ul class="list instafeed d-flex flex-wrap">
+        @foreach (var item in Model)
+        {
+            <li><img src="~/Public/img/product/@item.Image" width="50" height="55" alt=""></li>
+        }
+    </ul>
+</div>

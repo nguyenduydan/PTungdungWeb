@@ -82,7 +82,7 @@
                                 </div>
                             </li>
                             <!--Tìm kiếm - end-->
-                            <li class="nav-item"><a href="~/gio-hang"><i class="ti-shopping-cart"></i><span class="nav-shop__circle text-info">@soluong</span></a> </li>
+                            <li class="nav-item mx-3"><button><a href="@Url.Action("Index","Giohang")"><i class="ti-shopping-cart"></i><span class="nav-shop__circle text-light">@soluong</span></a> </button></li>
                             @if (Session["Username"] == null)
                             {
                                 <li class="nav-item ml-0"><a href="~/dang-nhap" class="button button-header">Đăng nhập</a></li>

@@ -3,35 +3,39 @@
     ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
+<style>
+    .img-move {
+        height: 580px;
+    }
+    figure.zoom {
+        background-position: 50% 50%;
+        position: relative;
+        overflow: hidden;
+        cursor: zoom-in;
+    }
 
+        figure.zoom img:hover {
+            opacity: 0;
+        }
+
+        figure.zoom img {
+            transition: opacity 0.5s;
+            display: block;
+            width: 100%;
+        }
+</style>
 <body>
     @foreach (var product in Model)
     {
-        <!-- ================ start banner area ================= -->
-        <section class="blog-banner-area" id="blog">
-            <div class="container h-100">
-                <div class="blog-banner">
-                    <div class="text-center">
-                        <h1>Chi tiết sản phẩm</h1>
-                        <nav aria-label="breadcrumb" class="banner-breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="@product.CategorySlug">@product.CatName</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================ end banner area =================-->
         <!--================Single Product Area =================-->
         <div class="product_image_area">
             <div class="container">
                 <div class="row s_product_inner">
-                    <div class="col-lg-6">
-                        <div class="owl-carousel owl-theme s_Product_carousel">
-                            <div class="single-prd-item">
-                                <img class="img-fluid" src="~/Public/img/product/@product.Image" alt="">
-                            </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="single-prd-item">
+                            <figure class="zoom" style="background:url(/Public/img/product/@product.Image)" onmousemove="zoom(event)" ontouchmove="zoom(event)">
+                                <img class="img-fluid img-move" src="~/Public/img/product/@product.Image" alt="">
+                            </figure>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
@@ -83,7 +87,7 @@
             <div class="row mt-30">
                 @foreach (var item in ViewBag.RelatedProducts)
                 {
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0" >
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                         <div class="single-search-product-wrapper">
                             <div class="single-search-product d-flex" style="min-height:140px">
                                 <a href="#"><img src="~/Public/img/product/@item.Image" alt=""></a>
@@ -107,4 +111,16 @@
     <script src="vendors/jquery.ajaxchimp.min.js"></script>
     <script src="vendors/mail-script.js"></script>
     <script src="js/main.js"></script>
+    <!--Zome Image-->
+    <script>
+        function zoom(e) {
+            var zoomer = e.currentTarget;
+            e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+            e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+
+            x = (offsetX / zoomer.offsetWidth) * 100;
+            y = (offsetY / zoomer.offsetHeight) * 100;
+            zoomer.style.backgroundPosition = x + "% " + y + "%";
+        }
+    </script>
 </body>

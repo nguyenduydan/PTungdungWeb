@@ -18,6 +18,7 @@ namespace WebThucHanh.Controllers
         // GET: Site
         public ActionResult Index(string slug = null)
         {
+            SessionConfig.SetUser(null);
             if (slug == null)
             {
                 //chuyen ve trang chu

@@ -62,5 +62,11 @@ namespace WebThucHanh.Controllers
             List<Menus> list = menusDAO.getListByParentId(0, "Footer");
             return View("MenuFooter", list);
         }
+        public ActionResult ProductFooter() 
+        {
+            ProductDAO productsDAO = new ProductDAO();
+            List<ProductInfo> list = productsDAO.getListBylimit(6);
+            return View(list);
+        }
     }
 }
