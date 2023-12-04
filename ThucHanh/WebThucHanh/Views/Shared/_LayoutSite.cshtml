@@ -23,6 +23,19 @@
     <script src="Public/vendors/mail-script.js"></script>
     <script src="Public/js/main.js"></script>
     @RenderSection("header", required: false)
+    <style>
+        body::-webkit-scrollbar{
+            width:10px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(to bottom, #007bff 50%, black );
+            border-radius: 100rem;
+        }
+        body::-webkit-scrollbar-track {
+            background: #f1f6f7;
+            border-radius: 100rem;
+        }
+    </style>
 </head>
 <body>
     <!--================ Start Header Menu Area =================-->

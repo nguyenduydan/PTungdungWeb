@@ -265,14 +265,19 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                 //Xy ly cho muc UpdateBy
                 menus.UpdateBy = Convert.ToInt32(Session["UserId"]);
+                if(menusDAO.Update(menus) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Cập nhật thành công");
+                    return RedirectToAction("Index");
 
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Cập nhật thành công");
-
-                //Cap nhat du lieu
-                menusDAO.Update(menus);
-
-                return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Cập nhật thất bại");
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.ParentList = new SelectList(menusDAO.getList("Index"), "Id", "Name");

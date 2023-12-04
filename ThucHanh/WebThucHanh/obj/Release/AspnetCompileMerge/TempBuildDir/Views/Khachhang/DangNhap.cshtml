@@ -1,6 +1,6 @@
 ﻿@model MyClass.Model.Users
 @{
-    ViewBag.Title = "DangNhap";
+    ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
 
@@ -24,23 +24,6 @@
 @using (Html.BeginForm("DangNhap", "Khachhang", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <!-- ================ start banner area ================= -->
-    <section class="blog-banner-area" id="category">
-        <div class="container h-100">
-            <div class="blog-banner">
-                <div class="text-center">
-                    <h1>Đăng kí / Đăng ký</h1>
-                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Đăng nhập/Đăng ký</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ================ end banner area ================= -->
     <!--================Login Box Area =================-->
     <section class="login_box_area section-margin">
         <div class="container">
@@ -49,7 +32,7 @@
                     <div class="login_box_img">
                         <div class="hover">
                             <h4>Bạn là thành viên mới?</h4>
-                            <p>Chào mừng bạn đã đến với shop của chúng tôi, nếu bạn là thành viên mới thì xin mời bấm nút tạo tài khoản bên giới</p>
+                            <p>Chào mừng bạn đã đến với shop của chúng tôi, nếu bạn là thành viên mới thì xin mời bấm nút tạo tài khoản bên dưới</p>
                             <a class="button button-account" href="~/dang-ky">Tạo tài khoản</a>
                         </div>
                     </div>

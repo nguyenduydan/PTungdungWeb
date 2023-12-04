@@ -87,10 +87,16 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     links.TableID = posts.ID;
                     links.Type = "post";
                     linksDAO.Insert(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Thêm bài viết thành công");
+                    return RedirectToAction("Index");
                 }
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Thêm bài viết thành công");
-                return RedirectToAction("Index");
+                else{
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Thêm bài viết thất bại");
+                    return RedirectToAction("Index");
+                }
+                
             }
             ViewBag.TopList = new SelectList(topicsDAO.getList("Index"), "ID", "Name");
             return View(posts);
@@ -201,14 +207,15 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                         string PathDir = "~/Public/img/post/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        if (posts.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
                         //upload hinh
                         img.SaveAs(PathFile);
                     }
                 }//ket thuc phan upload hinh anh
-
-                //xu ly cho muc PostType
-                //posts.PostType = "post";
-
                 //Xu ly cho muc UpdateAt
                 posts.UpdateAt = DateTime.Now;
 
@@ -223,10 +230,16 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     links.TableID = posts.ID;
                     links.Type = "post";
                     linksDAO.Insert(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Sửa bài viết thành công");
+                    return RedirectToAction("Index");
                 }
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Sửa bài viết thành công");
-                return RedirectToAction("Index");
+                else {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Sửa bài viết thất bại");
+                    return RedirectToAction("Index");
+                }
+               
             }
             ViewBag.TopList = new SelectList(topicsDAO.getList("Index"), "ID", "Name");
             return View(posts);

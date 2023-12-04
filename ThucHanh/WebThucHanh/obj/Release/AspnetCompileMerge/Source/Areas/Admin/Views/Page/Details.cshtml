@@ -35,6 +35,8 @@
                             @*Page khong co chu de*@
                             <th>@Html.DisplayNameFor(model => model.PostType)</th>
                             <th class="col-1">@Html.DisplayNameFor(model => model.Image)</th>
+                            <th>@Html.DisplayNameFor(model => model.CreateAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.UpdateAt)</th>
                         </tr>
                     </thead>
 
@@ -45,6 +47,8 @@
                             @*Page khong co chu de*@
                             <td>@Html.DisplayFor(model => model.PostType)</td>
                             <td><img src="~/Public/img/page/@Model.Image" alt="Img" class="img-fluid" /></td>
+                            <td>@Html.DisplayFor(model => model.CreateAt)</td>
+                            <td>@Html.DisplayFor(model => model.UpdateAt)</td>
                         </tr>
                     </tbody>
                 </table>

@@ -78,11 +78,20 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 //Xu ly cho muc CreateBy
                 sliders.CreateBy = Convert.ToInt32(Session["UserId"]);
 
-                slidersDAO.Insert(sliders);
-
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Thêm danh mục thành công");
-                return RedirectToAction("Index");
+               
+                if (slidersDAO.Insert(sliders) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Thêm danh mục thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Thêm danh mục thất bại");
+                    return RedirectToAction("Index");
+                }
+            
             }
             ViewBag.OrderList = new SelectList(slidersDAO.getList("Index"), "Order", "Name");
             return View(sliders);
@@ -214,12 +223,19 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                 //Xu ly cho muc UpdateBy
                 sliders.UpdateBy = Convert.ToInt32(Session["UserId"]);
-
-                slidersDAO.Update(sliders);
-
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
-                return RedirectToAction("Index");
+                if (slidersDAO.Update(sliders) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Sửa danh mục thất bại");
+                    return RedirectToAction("Index");
+                }
+                
             }
             return View(sliders);
         }

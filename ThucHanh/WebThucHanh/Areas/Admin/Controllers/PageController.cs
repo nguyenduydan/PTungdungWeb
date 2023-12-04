@@ -90,13 +90,18 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     //cap nhat link cho page
                     links.Type = "page";
                     linksDAO.Insert(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Thêm trang đơn thành công");
+                    return RedirectToAction("Index");
                 }
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Thêm trang đơn thành công");
-                return RedirectToAction("Index");
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Thêm trang đơn thất bại");
+                    return RedirectToAction("Index");
+                }
+               
             }
-            //doi voi page thi khong co chu de:
-            //ViewBag.TopList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
             return View(posts);
         }
 
@@ -203,17 +208,18 @@ namespace WebThucHanh.Areas.Admin.Controllers
                         //ten file = Slug + Id + phan mo rong cua tap tin
                         string imgName = slug + id + img.FileName.Substring(img.FileName.LastIndexOf("."));
                         posts.Image = imgName;
-
+                        
                         string PathDir = "~/Public/img/page/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
+                        if (posts.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), posts.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
                         //upload hinh
                         img.SaveAs(PathFile);
                     }
                 }//ket thuc phan upload hinh anh
-
-                ////xu ly cho muc PostType = page (doi voi Page)
-                //posts.PostType = "page";
-
                 //Xu ly cho muc UpdateAt
                 posts.UpdateAt = DateTime.Now;
 
@@ -229,13 +235,17 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     //thoi doi thong tin kieu Page
                     links.Type = "page";
                     linksDAO.Insert(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Sửa trang đơn thành công");
+                    return RedirectToAction("Index");
                 }
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Sửa trang đơn thành công");
-                return RedirectToAction("Index");
+                else{
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Sửa trang đơn thất bại");
+                    return RedirectToAction("Index");
+                }
+                
             }
-            //doi voi page thi khong co chu de:
-            //ViewBag.TopList = new SelectList(topicsDAO.getList("Index"), "Id", "Name");
             return View(posts);
         }
 

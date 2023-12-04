@@ -32,7 +32,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block fs-3">
-                    <a href="http://fogvn29-001-site1.ctempurl.com/" class="nav-link">Trang người dùng</a>
+                    <a href="@Url.Action("ReturnHome","Admin")" class="nav-link">Trang người dùng</a>
                 </li>
                 <li><a class="btn btn-outline-primary" href="@Url.Action("Dangxuat","Admin")">Đăng xuất</a></li>
             </ul>
@@ -82,7 +82,7 @@
                             <a href="#" class="nav-link">
                                 <i class="fa fa-procedures " aria-hidden="true"></i>
                                 <p>
-                                    Sản phẩm
+                                     Sản phẩm
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -113,7 +113,7 @@
                             <a href="#" class="nav-link">
                                 <i class="fa fa-pen "></i>
                                 <p>
-                                    Bài viết
+                                     Bài viết
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -144,7 +144,7 @@
                             <a href="#" class="nav-link">
                                 <i class="fa fa-book "></i>
                                 <p>
-                                    Giao diện
+                                     Giao diện
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -164,25 +164,10 @@
                             </ul>
                         </li>
 
-
-                        <!--Phàn còn lại của menu-->
-                        <li class="nav-header">LABELS</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-danger"></i>
-                                <p class="text">Important</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-warning"></i>
-                                <p>Warning</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-info"></i>
-                                <p>Informational</p>
+                            <a href="@Url.Action("Index","Users")" class="nav-link">
+                                <i class="far fa-user"></i>
+                                <p> Quản lý tài khoản</p>
                             </a>
                         </li>
                     </ul>

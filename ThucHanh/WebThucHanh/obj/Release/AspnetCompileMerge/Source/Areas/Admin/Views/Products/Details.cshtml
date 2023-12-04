@@ -42,10 +42,12 @@
                             <th>@Html.DisplayNameFor(model => model.CatID)</th>
                             <th>@Html.DisplayNameFor(model => model.SupplierID)</th>
                             <th class="col-md-1">@Html.DisplayNameFor(model => model.Image)</th>
+                            <th >@Html.DisplayNameFor(model => model.Image)</th>
                             <th>@Html.DisplayNameFor(model => model.Amount)</th>
                             <th>@Html.DisplayNameFor(model => model.Price)</th>
                             <th>@Html.DisplayNameFor(model => model.SalePrice)</th>
-                            <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            <th class="col-1">@Html.DisplayNameFor(model => model.CreateAt)</th>
+                            <th class="col-1">@Html.DisplayNameFor(model => model.UpdateAt)</th>
                         </tr>
                     </thead>
 
@@ -56,10 +58,12 @@
                             <td>@Html.DisplayFor(model => model.CatID)</td>
                             <td>@Html.DisplayFor(model => model.SupplierID)</td>
                             <td><img src="~/Public/img/product/@Model.Image" alt="Img" class="img-fluid" /></td>
+                            <td>@Html.DisplayFor(model => model.Image)</td>
                             <td>@Html.DisplayFor(model => model.Amount)</td>
                             <td>@Html.DisplayFor(model => model.Price)</td>
                             <td>@Html.DisplayFor(model => model.SalePrice)</td>
-                            <td>@Html.DisplayFor(model => model.Status)</td>
+                            <td >@Html.DisplayFor(model => model.CreateAt)</td>
+                            <td>@Html.DisplayFor(model => model.UpdateAt)</td>
                         </tr>
                     </tbody>
                 </table>

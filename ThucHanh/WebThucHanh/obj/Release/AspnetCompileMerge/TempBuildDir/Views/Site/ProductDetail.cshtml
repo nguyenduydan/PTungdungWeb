@@ -3,35 +3,16 @@
     ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_LayoutSite.cshtml";
 }
-
 <body>
     @foreach (var product in Model)
     {
-        <!-- ================ start banner area ================= -->
-        <section class="blog-banner-area" id="blog">
-            <div class="container h-100">
-                <div class="blog-banner">
-                    <div class="text-center">
-                        <h1>Chi tiết sản phẩm</h1>
-                        <nav aria-label="breadcrumb" class="banner-breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="@product.CategorySlug">@product.CatName</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================ end banner area =================-->
         <!--================Single Product Area =================-->
         <div class="product_image_area">
             <div class="container">
                 <div class="row s_product_inner">
-                    <div class="col-lg-6">
-                        <div class="owl-carousel owl-theme s_Product_carousel">
-                            <div class="single-prd-item">
-                                <img class="img-fluid" src="~/Public/img/product/@product.Image" alt="">
-                            </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="single-prd-item">
+                             <img class="img-fluid" src="~/Public/img/product/@product.Image" alt="">
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
@@ -61,7 +42,11 @@
                                     </button>
                                 </div>
                             </div>
-                            <a class="button primary-btn mx-5" href="#">Thêm vào giỏ</a>
+                            <a href="@Url.Action("AddCart","Giohang", new { productid = product.Id})" class="button primary-btn mx-5">
+                                <span class="custom-button">
+                                    Thêm vào giỏ hàng
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +64,7 @@
             <div class="row mt-30">
                 @foreach (var item in ViewBag.RelatedProducts)
                 {
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0" >
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                         <div class="single-search-product-wrapper">
                             <div class="single-search-product d-flex" style="min-height:140px">
                                 <a href="#"><img src="~/Public/img/product/@item.Image" alt=""></a>

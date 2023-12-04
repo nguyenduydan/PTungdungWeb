@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using MyClass.DAO;
 using MyClass.Model;
 using WebThucHanh.App_Start;
@@ -20,7 +21,6 @@ namespace WebThucHanh.Areas.Admin.Controllers
         ProductDAO productDAO = new ProductDAO();
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         SupplierDAO supplierDAO = new SupplierDAO();
-
         // GET: Admin/Products
        
         public ActionResult Index()
@@ -91,12 +91,18 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                 //Xu ly cho muc CreateBy
                 products.CreateBy = Convert.ToInt32(Session["UserId"]);
-
-                productDAO.Insert(products);//chen them row vào Table Products
-
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Thêm sản phẩm thành công");
-                return RedirectToAction("Index");
+                if (productDAO.Insert(products) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Thêm sản phẩm thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Thêm sản phẩm thất bại");
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.ListSupId = new SelectList(supplierDAO.getList("Index"), "Id", "Name");
             ViewBag.ListCatId = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
@@ -172,7 +178,6 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 //Xu ly cho muc Slug
                 products.Slug = Xstring.Str_Slug(products.Name);
                 //chuyen doi dua vao truong Name de loai bo dau, khoang cach = dau -
-
                 //xu ly cho phan upload hình ảnh
                 var img = Request.Files["img"];//lay thong tin file
                 if (img.ContentLength != 0)
@@ -190,15 +195,12 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                         string PathDir = "~/Public/img/product/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
-
-                        //cap nhat thi phai xoa file cu
-                        ////Xoa file
-                        //if (products.Image != null)
-                        //{
-                        //    string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
-                        //    System.IO.File.Delete(DelPath);
-                        //}
-
+                        //Xoa file
+                        if (products.Image != null)
+                        {
+                            string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
+                            System.IO.File.Delete(DelPath);
+                        }
                         //upload hinh
                         img.SaveAs(PathFile);
                     }
@@ -206,15 +208,20 @@ namespace WebThucHanh.Areas.Admin.Controllers
 
                 //Xu ly cho muc UpdateAt
                 products.UpdateAt = DateTime.Now;
-
                 //Xu ly cho muc UpdateBy
-                products.UpdateBy = Convert.ToInt32(Session["UserId"]);
-
-                productDAO.Update(products);//chen them row vào Table Products
-
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Cập nhật thông tin sản phẩm thành công");
-                return RedirectToAction("Index");
+                products.UpdateBy = Convert.ToInt32(Session["UserId"]); 
+                if(productDAO.Update(products) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Cập nhật thông tin sản phẩm thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Cập nhật thông tin sản phẩm thất bại");
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.ListSupId = new SelectList(supplierDAO.getList("Index"), "Id", "Name");
             ViewBag.ListCatId = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");

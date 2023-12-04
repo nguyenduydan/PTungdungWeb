@@ -106,39 +106,39 @@ namespace MyClass.DAO
                 case "Index":
                     {
                         list = db.Products
-                                .Where(p => p.Status != 0)
-                  .Join(
-                  db.Categories, // Bảng Categories
-                  p => p.CatID, // Khóa ngoại của Products liên kết với Categories
-                  c => c.ID, // Khóa chính của Categories
-                  (p, c) => new { Product = p, Category = c }//Kết hợp Products - Categories
-                  )
-                  .Join(
-                  db.Suppliers, // Bảng Suppliers
+                        .Where(p => p.Status != 0)
+                        .Join(
+                        db.Categories, // Bảng Categories
+                        p => p.CatID, // Khóa ngoại của Products liên kết với Categories
+                        c => c.ID, // Khóa chính của Categories
+                        (p, c) => new { Product = p, Category = c }//Kết hợp Products - Categories
+                        )
+                        .Join(
+                        db.Suppliers, // Bảng Suppliers
                                 // Khóa ngoại của Product/Category liên kết với Suppliers
-                  pc => pc.Product.SupplierID,
-                  s => s.ID, // Khóa chính của Suppliers
-                  (pc, s) => new ProductInfo
-                  {
-                      Id = pc.Product.Id,
-                      CatID = pc.Product.CatID,
-                      Name = pc.Product.Name,
-                      CatName = pc.Category.Name, // Lấy tên danh mục từ bảng Categories
-                      SupplierId = pc.Product.SupplierID,
-                      SupplierName = s.Name, // Lấy tên nhà cung cấp từ bảng Suppliers
-                      Slug = pc.Product.Slug,
-                      Image = pc.Product.Image,
-                      Price = pc.Product.Price,
-                      SalePrice = pc.Product.SalePrice,
-                      Amount = pc.Product.Amount,
-                      MetaDesc = pc.Product.MetaDesc,
-                      MetaKey = pc.Product.MetaKey,
-                      CreateBy = pc.Product.CreateBy,
-                      CreateAt = pc.Product.CreateAt,
-                      UpdateBy = pc.Product.UpdateBy,
-                      UpdateAt = pc.Product.UpdateAt,
-                      Status = pc.Product.Status
-                  }
+                        pc => pc.Product.SupplierID,
+                        s => s.ID, // Khóa chính của Suppliers
+                        (pc, s) => new ProductInfo
+                        {
+                            Id = pc.Product.Id,
+                            CatID = pc.Product.CatID,
+                            Name = pc.Product.Name,
+                            CatName = pc.Category.Name, // Lấy tên danh mục từ bảng Categories
+                            SupplierId = pc.Product.SupplierID,
+                            SupplierName = s.Name, // Lấy tên nhà cung cấp từ bảng Suppliers
+                            Slug = pc.Product.Slug,
+                            Image = pc.Product.Image,
+                            Price = pc.Product.Price,
+                            SalePrice = pc.Product.SalePrice,
+                            Amount = pc.Product.Amount,
+                            MetaDesc = pc.Product.MetaDesc,
+                            MetaKey = pc.Product.MetaKey,
+                            CreateBy = pc.Product.CreateBy,
+                            CreateAt = pc.Product.CreateAt,
+                            UpdateBy = pc.Product.UpdateBy,
+                            UpdateAt = pc.Product.UpdateAt,
+                            Status = pc.Product.Status
+                        }
                       )
                     .ToList();
                         break;

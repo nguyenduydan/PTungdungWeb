@@ -76,10 +76,16 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     links.TableID = topics.ID;
                     links.Type = "topic";
                     linksDAO.Insert(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Thêm chủ đề thành công");
+                    return RedirectToAction("Index");
                 }
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Thêm chủ đề thành công");
-                return RedirectToAction("Index");
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Thêm chủ đề thất bại");
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.ListTopic = new SelectList(topicsDAO.getList("Index"), "ID", "Name");
             ViewBag.OrderTopic = new SelectList(topicsDAO.getList("Index"), "Order", "Name");
@@ -198,8 +204,7 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 //Xy ly cho muc UpdateBy
                 topics.UpdateBy = Convert.ToInt32(Session["UserId"]);
 
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
+                
 
                 //Cap nhat du lieu, sua them cho phan Links phuc vu cho Topics
                 if (topicsDAO.Update(topics) == 1)
@@ -209,9 +214,16 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     //cap nhat lai thong tin
                     links.Slug = topics.Slug;
                     linksDAO.Update(links);
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["message"] = new Xmessage("danger", "Sửa danh mục thất bại");
+                    return RedirectToAction("Index");
                 }
 
-                return RedirectToAction("Index");
             }
             return View(topics);
         }

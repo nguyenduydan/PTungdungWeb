@@ -108,10 +108,17 @@ namespace WebThucHanh.Areas.Admin.Controllers
                     links.TableID = categories.ID;
                     links.Type = "category";
                     linksDAO.Insert(links);
+                    //hiển thị thông báo thành công
+                    TempData["message"] = new Xmessage("success", "Tạo mới loại sản phẩm thành công!");
+                    return RedirectToAction("Index");
                 }
-                //hiển thị thông báo thành công
-                TempData["message"] = new Xmessage ("success","Tạo mới loại sản phẩm thành công!");
-                return RedirectToAction("Index");
+                else
+                {
+                    //hiển thị thông báo thành công
+                    TempData["message"] = new Xmessage("danger", "Tạo mới loại sản phẩm thất bại!");
+                    return RedirectToAction("Index");
+                }
+               
             }
             ViewBag.Catlist = new SelectList(categoriesDAO.getList("Index"), "ID", "Name");
             ViewBag.Orderlist = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");
@@ -167,17 +174,22 @@ namespace WebThucHanh.Areas.Admin.Controllers
                 //Update by
                 categories.UpdateBy = Convert.ToInt32(Session["UserId"]);
                 //hiển thị thông báo thành công
-                TempData["message"] = new Xmessage("success", "Cập nhật thông tin thành công!");
                 //cập nhật links
                 if (categoriesDAO.Update(categories) == 1)
                 {
+                    TempData["message"] = new Xmessage("success", "Cập nhật thông tin thành công!");
                     //Neu trung khop thong tin: Type = category va TableID = categories.ID
                     Links links = linksDAO.getRow(categories.ID, "category");
                     //cap nhat lai thong tin
                     links.Slug = categories.Slug;
                     linksDAO.Update(links);
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    TempData["message"] = new Xmessage("danger", "Cập nhật thông tin thất bại!");
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.Catlist = new SelectList(categoriesDAO.getList("Index"), "ID", "Name");
             ViewBag.Orderlist = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");

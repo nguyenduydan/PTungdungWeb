@@ -39,7 +39,7 @@
                                 {
                                     <tr>
                                         <td>@item.Name </td>
-                                        <td><img src="~/Public/img/product/@item.Img" alt="Img" class="img-fluid" /></td>
+                                        <td><img src="~/Public/img/product/@item.Img" style="width:100px;height:80px" alt="Img" class="img-fluid" /></td>
                                         <td style="width:50px;" class="card-product__price"><input name="amount" value="@item.Ammount" type="number" min="0" /></td>
                                         <td class="card-product__price">@string.Format("{0:0,0}", @item.Price)<sup>đ</sup></td>
                                         <td class="card-product__price">@string.Format("{0:0,0}", @item.Total)<sup>đ</sup></td>

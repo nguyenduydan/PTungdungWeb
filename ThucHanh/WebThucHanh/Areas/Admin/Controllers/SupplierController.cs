@@ -8,6 +8,7 @@ using System.Net;
 using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using MyClass.DAO;
 using MyClass.Model;
 using WebThucHanh.App_Start;
@@ -99,10 +100,19 @@ namespace WebThucHanh.Areas.Admin
                     }
                 }//ket thuc phan upload hinh anh
                 //Thêm mới vào database
-                supplierDAO.Insert(suppliers);
-                //hiển thị thông báo thành công
-                TempData["message"] = new Xmessage("success", "Thêm mới nhà cung cấp thành công!");
-                return RedirectToAction("Index"); ;
+                if (supplierDAO.Insert(suppliers) == 1)
+                {
+                    //hiển thị thông báo thành công
+                    TempData["message"] = new Xmessage("success", "Thêm mới nhà cung cấp thành công!");
+                    return RedirectToAction("Index"); ;
+                }
+                else
+                {
+                    //hiển thị thông báo thành công
+                    TempData["message"] = new Xmessage("danger", "Thêm mới nhà cung cấp thất bại!");
+                    return RedirectToAction("Index"); ;
+                }
+                
             }
             ViewBag.OrderList = new SelectList(supplierDAO.getList("Index"), "ID", "Name");
             return View(suppliers);
@@ -163,15 +173,11 @@ namespace WebThucHanh.Areas.Admin
                         //upload hinh
                         string PathDir = "~/Public/img/supplier/";
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
-
-                        //cap nhat thi phai xoa file cu
-                        //Xoa file
                         if (suppliers.Image != null)
                         {
                             string DelPath = Path.Combine(Server.MapPath(PathDir), suppliers.Image);
                             System.IO.File.Delete(DelPath);
                         }
-
                         img.SaveAs(PathFile);
                     }
                 }//ket thuc phan upload hinh anh
@@ -182,11 +188,18 @@ namespace WebThucHanh.Areas.Admin
                 //Xu ly cho muc UpdateBy
                 suppliers.UpdateBy = Convert.ToInt32(Session["UserId"]);
 
-                supplierDAO.Update(suppliers);
-
-                //Thong bao thanh cong
-                TempData["message"] = new Xmessage("success", "Sửa danh mục thành công");
-                return RedirectToAction("Index");
+                if (supplierDAO.Update(suppliers) == 1)
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("success", "Cập nhật thông tin sản phẩm thành công");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //Thong bao thanh cong
+                    TempData["message"] = new Xmessage("danger", "Cập nhật thông tin sản phẩm thất bại");
+                    return RedirectToAction("Index");
+                }
             }
             return View(suppliers);
         }
