@@ -26,7 +26,7 @@ namespace WebThucHanh.Controllers
         public ActionResult AddCart(int productid)
         {
             Products products = productsDAO.getRow(productid);
-            CartItem cartitem = new CartItem(products.Id, products.Name, products.Image, products.Price, 1);
+            CartItem cartitem = new CartItem(products.Id, products.Name, products.Image, products.SalePrice, 1);
             //Them vao gio hang voi danh sách list phan tu = Session = MyCart
             XCart xcart = new XCart();
             List<CartItem> list = xcart.AddCart(cartitem, productid);

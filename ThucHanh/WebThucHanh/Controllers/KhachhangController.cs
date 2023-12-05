@@ -30,8 +30,13 @@ namespace WebThucHanh.Controllers
 
             Users user = usersDAO.getRow(username, "customer"); // Chỗ này "role" có thể thay bằng role thực tế của bạn
 
-            if (user != null && user.Password == password)
+            if (user != null && user.Password == password && user.UserName == username)
             {
+                //Tạo cookies
+                HttpCookie ck = new HttpCookie("myCookies");
+                ck["name"] = username;
+                Response.Cookies.Add(ck);
+                ck.Expires = DateTime.Now.AddDays(2);//giới hạn đăng nhập 2 ngày
                 // Đăng nhập thành công, có thể thực hiện các hành động khác ở đây
                 // Ví dụ: Lưu thông tin người dùng vào session
                 Session["UserID"] = user.ID;
@@ -47,8 +52,14 @@ namespace WebThucHanh.Controllers
         }
         public ActionResult Dangxuat()
         {
-            Session["UserName"] = null;
-            SessionConfig.SetUser(null);
+            Session.Abandon();
+            if (Request.Cookies["myCookies"] != null)
+            {
+                //Tạo cookies
+                HttpCookie myCookies = new HttpCookie("myCookies");
+                myCookies.Expires = DateTime.Now.AddDays(-1);//giới hạn đăng nhập 2 ngày
+                Response.Cookies.Add(myCookies);
+            }
             return RedirectToAction("Index", "Site");
         }
 

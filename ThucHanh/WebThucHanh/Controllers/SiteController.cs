@@ -100,7 +100,7 @@ namespace WebThucHanh.Controllers
 
             IPagedList<ProductInfo> pagedList = list.ToPagedList(pageNumber, pageSize);
 
-            return View("Product", pagedList);
+            return View(pagedList);
         }
         /////////////////////////////////////////////////////////////////////////////
         //Product/Details
